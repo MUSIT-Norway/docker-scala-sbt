@@ -1,9 +1,3 @@
-###################################################
-# Dockerfile defining Scala and SBT
-#
-# https://github.com/kpmeen/docker-scala-sbt
-###################################################
-
 FROM java:8
 
 ENV SCALA_VERSION 2.11.8
@@ -24,6 +18,6 @@ RUN \
   apt-get update && \
   apt-get install sbt && \
   sbt sbtVersion
-  
+
 # Define working directory
 WORKDIR /root
