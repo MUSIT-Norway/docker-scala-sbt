@@ -24,6 +24,10 @@ RUN \
   apt-get update && \
   apt-get install sbt && \
   sbt sbtVersion
+  
+RUN echo "==> fetch all sbt jars from Maven repo..."       && \
+    echo "==> [CAUTION] this may take several minutes!!!"  && \
+    sbt
 
 # Define working directory
 WORKDIR /root
