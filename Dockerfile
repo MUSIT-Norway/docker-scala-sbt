@@ -16,8 +16,18 @@ RUN \
   dpkg -i sbt-$SBT_VERSION.deb && \
   rm sbt-$SBT_VERSION.deb && \
   apt-get update && \
-  apt-get install sbt && \
-  sbt sbtVersion
+  apt-get install sbt
+  #sbt sbtVersion
+
+# Set up a dummy SBT project
+WORKDIR /play-scala
+COPY ./play-scala /play-scala
+# Prefetch dependencies
+RUN \
+  ls && \
+  sbt compile && \
+  rm -rf *
+  
 
 # Define working directory
 WORKDIR /root
