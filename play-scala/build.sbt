@@ -32,8 +32,6 @@ val pgsqlVersion = "9.4-1201-jdbc41"
 val h2Version = "1.4.192"
 val scalatestVersion = "2.2.4"
 val scalatestplusVersion = "1.5.1"
-val derivedCodesVersion = "3.3"
-val enumeratumVersion = "1.4.4"
 val casbahVersion = "3.1.1"
 val reactiveMongoVersion = "0.11.14"
 
@@ -78,10 +76,6 @@ libraryDependencies ++= Seq(
   "com.typesafe.slick" %% "slick" % slick2Version,
   "com.typesafe.slick" %% "slick" % slick3Version,
   "ch.qos.logback" % "logback-classic" % logbackVersion,
-  "org.julienrf" %% "play-json-derived-codecs" % derivedCodesVersion,
-  "com.beachape" %% "enumeratum" % enumeratumVersion,
-  "com.beachape" %% "enumeratum-play-json" % enumeratumVersion,
-  "com.beachape" %% "enumeratum-play" % enumeratumVersion,
   "org.mongodb" %% "casbah" % casbahVersion,
   "org.reactivemongo" %% "reactivemongo" % reactiveMongoVersion
 )
