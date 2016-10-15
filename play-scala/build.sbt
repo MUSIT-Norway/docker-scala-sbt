@@ -21,7 +21,7 @@ coverageFailOnMinimum := false
 
 SbtScalariform.scalariformSettings
 
-val playVersion = "2.5.8"
+val playVersion = "2.5.9"
 val akkaVersion = "2.4.11"
 val playSlick2Version = "2.0.0"
 val slick2Version = "2.1.0"
