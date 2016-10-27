@@ -1,7 +1,9 @@
-FROM java:8
+FROM java:oracle-java8
 
 ENV SCALA_VERSION 2.11.8
 ENV SBT_VERSION 0.13.11
+
+ENV LANG en_US.UTF-8
 
 # Install Scala
 ## Piping curl directly in tar
