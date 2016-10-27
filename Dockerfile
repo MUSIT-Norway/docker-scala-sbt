@@ -3,9 +3,17 @@ FROM openjdk:8
 ENV SCALA_VERSION 2.11.8
 ENV SBT_VERSION 0.13.11
 
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8
+# Install locales package
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales
+
+# Set locale to be en_US.UTF-8
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    echo 'LANG="en_US.UTF-8"'>/etc/default/locale && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
+
+# Set the LANG environment
+ENV LANG en_US.UTF-8 
 
 # Install Scala
 ## Piping curl directly in tar
