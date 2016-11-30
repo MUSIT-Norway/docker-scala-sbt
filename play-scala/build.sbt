@@ -17,12 +17,21 @@ lazy val root = (project in file("."))
 
 scalaVersion := "2.11.8"
 
+PlayKeys.playOmnidoc := false
+
 coverageFailOnMinimum := false
 
 SbtScalariform.scalariformSettings
 
-val playVersion = "2.5.9"
-val akkaVersion = "2.4.11"
+resolvers ++= Seq(
+    Resolver.bintrayRepo("scalaz", "releases"),
+    Resolver.typesafeRepo("releases"),
+    Resolver.jcenterRepo
+  )
+
+val playVersion = "2.5.10"
+val akkaVersion = "2.4.14"
+val akkaHttpVersion = "10.0.0"
 val playSlick2Version = "2.0.0"
 val slick2Version = "2.1.0"
 val slick3Version = "3.1.1"
@@ -30,11 +39,13 @@ val logbackVersion = "1.1.7"
 val slf4jVersion = "1.7.21"
 val pgsqlVersion = "9.4-1201-jdbc41"
 val h2Version = "1.4.192"
-val scalatestVersion = "2.2.4"
+val scalatestVersion = "2.2.6"
 val scalatestplusVersion = "1.5.1"
 val casbahVersion = "3.1.1"
 val reactiveMongoVersion = "0.11.14"
-
+val silhouetteVersion = "4.0.0"
+val ficusVersion = "1.2.3"
+val scalaGuiceVersion = "4.1.0"
 
 libraryDependencies ++= Seq(
   jdbc,
@@ -62,14 +73,17 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion,
   "com.typesafe.akka" %% "akka-distributed-data-experimental" % akkaVersion,
   "com.typesafe.akka" %% "akka-typed-experimental" % akkaVersion,
-  "com.typesafe.akka" %% "akka-http-experimental" % akkaVersion,
-  "com.typesafe.akka" %% "akka-http-jackson-experimental" % akkaVersion,
-  "com.typesafe.akka" %% "akka-http-spray-json-experimental" % akkaVersion,
-  "com.typesafe.akka" %% "akka-http-xml-experimental" % akkaVersion,
+  "com.typesafe.akka" %% "akka-http-core" % akkaHttpVersion,
+  "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
+  "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion,
+  "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
+  "com.typesafe.akka" %% "akka-http-jackson" % akkaHttpVersion,
+  "com.typesafe.akka" %% "akka-http-xml" % akkaHttpVersion,
   "com.typesafe.akka" %% "akka-persistence-query-experimental" % akkaVersion,
   "org.iq80.leveldb" % "leveldb" % "0.7",
   "org.fusesource.leveldbjni" % "leveldbjni-all" % "1.8",
   "org.scalatest" %% "scalatest" % scalatestVersion % Test,
+  "org.scalactic" %% "scalactic" % scalatestVersion,
   "org.scalatestplus.play" %% "scalatestplus-play" % scalatestplusVersion % Test,
   "com.typesafe.play" %% "play-slick" % playSlick2Version,
   "com.typesafe.play" %% "play-slick-evolutions" % playSlick2Version,
@@ -77,8 +91,16 @@ libraryDependencies ++= Seq(
   "com.typesafe.slick" %% "slick" % slick3Version,
   "ch.qos.logback" % "logback-classic" % logbackVersion,
   "org.mongodb" %% "casbah" % casbahVersion,
-  "org.reactivemongo" %% "reactivemongo" % reactiveMongoVersion
+  "org.reactivemongo" %% "reactivemongo" % reactiveMongoVersion,
+  "com.iheart" %% "ficus" % ficusVersion,
+  "net.codingwell" %% "scala-guice" % scalaGuiceVersion,
+  "com.mohiva" %% "play-silhouette" % silhouetteVersion,
+  "com.mohiva" %% "play-silhouette-password-bcrypt" % silhouetteVersion,
+  "com.mohiva" %% "play-silhouette-crypto-jca" % silhouetteVersion,
+  "com.mohiva" %% "play-silhouette-persistence" % silhouetteVersion,
+  "com.mohiva" %% "play-silhouette-cas" % silhouetteVersion,
+  "com.mohiva" %% "play-silhouette-persistence-reactivemongo" % silhouetteVersion,
+  "com.mohiva" %% "play-silhouette-testkit" % silhouetteVersion % Test
 )
 
 libraryDependencies ++= Seq("slf4j-api", "jul-to-slf4j", "jcl-over-slf4j").map("org.slf4j" % _ % slf4jVersion)
-
