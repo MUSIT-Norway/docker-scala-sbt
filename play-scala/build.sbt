@@ -46,6 +46,7 @@ val reactiveMongoVersion = "0.11.14"
 val silhouetteVersion = "4.0.0"
 val ficusVersion = "1.2.3"
 val scalaGuiceVersion = "4.1.0"
+val h2Version = "1.4.193"
 
 libraryDependencies ++= Seq(
   jdbc,
@@ -82,6 +83,7 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-persistence-query-experimental" % akkaVersion,
   "org.iq80.leveldb" % "leveldb" % "0.7",
   "org.fusesource.leveldbjni" % "leveldbjni-all" % "1.8",
+  "com.h2database" % "h2" % h2Version,
   "org.scalatest" %% "scalatest" % scalatestVersion % Test,
   "org.scalactic" %% "scalactic" % scalatestVersion,
   "org.scalatestplus.play" %% "scalatestplus-play" % scalatestplusVersion % Test,
