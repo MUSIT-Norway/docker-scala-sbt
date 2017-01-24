@@ -29,10 +29,10 @@ resolvers ++= Seq(
     Resolver.jcenterRepo
   )
 
-val playVersion = "2.5.10"
-val akkaVersion = "2.4.14"
-val akkaHttpVersion = "10.0.0"
-val playSlick2Version = "2.0.0"
+val playVersion = "2.5.12"
+val akkaVersion = "2.4.16"
+val akkaHttpVersion = "10.0.2"
+val playSlick2Version = "2.0.2"
 val slick2Version = "2.1.0"
 val slick3Version = "3.1.1"
 val logbackVersion = "1.1.7"
@@ -44,7 +44,7 @@ val scalatestplusVersion = "1.5.1"
 val casbahVersion = "3.1.1"
 val reactiveMongoVersion = "0.11.14"
 val silhouetteVersion = "4.0.0"
-val ficusVersion = "1.2.3"
+val ficusVersion = "1.4.0"
 val scalaGuiceVersion = "4.1.0"
 val h2Version = "1.4.193"
 
