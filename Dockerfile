@@ -28,7 +28,7 @@ RUN \
   dpkg -i sbt-$SBT_VERSION.deb && \
   rm sbt-$SBT_VERSION.deb && \
   apt-get update && \
-  apt-get install sbt
+  apt-get install sbt curl apt-transport-https ca-certificates software-properties-common
 
 RUN \
   curl -fsSL https://yum.dockerproject.org/gpg | apt-key add - && \
