@@ -16,22 +16,19 @@ RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
 ENV LANG en_US.UTF-8 
 
 # Install Scala
-## Piping curl directly in tar
 RUN \
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6 && \
   curl -fsL http://downloads.typesafe.com/scala/$SCALA_VERSION/scala-$SCALA_VERSION.tgz | tar xfz - -C /root/ && \
   echo >> /root/.bashrc && \
-  echo 'export PATH=~/scala-$SCALA_VERSION/bin:$PATH' >> /root/.bashrc
-
-# Install sbt
-RUN \
+  echo 'export PATH=~/scala-$SCALA_VERSION/bin:$PATH' >> /root/.bashrc && \
   apt-get update && \
-  apt-get install curl apt-transport-https ca-certificates software-properties-common && \
+  apt-get -y install apt-transport-https ca-certificates software-properties-common
+
+# Install sbt and docker-engine
+RUN \
   curl -L -o sbt-$SBT_VERSION.deb http://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb && \
   dpkg -i sbt-$SBT_VERSION.deb && \
-  rm sbt-$SBT_VERSION.deb
-
-RUN \
+  rm sbt-$SBT_VERSION.deb && \
   curl -fsSL https://yum.dockerproject.org/gpg | apt-key add - && \
   add-apt-repository "deb https://apt.dockerproject.org/repo/ debian-$(lsb_release -cs) main" && \
   apt-get update && \
