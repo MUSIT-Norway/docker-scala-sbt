@@ -10,6 +10,12 @@ variables:
 services:
   - docker:dind
 
+before_script:
+  - echo "Running build $CI_BUILD_ID"
+  - mkdir $HOME/.docker
+  - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
+  - docker info
+
 stages:
   - build
 
