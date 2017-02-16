@@ -16,6 +16,5 @@ stages:
 build:
   stage: build
   script:
-    - docker login -u $MUSITREGUSR -p $MUSITREGPWD $MUSIT_DOCKER_REGISTRY
     - docker build -t $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:latest .
     - docker push $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:latest
