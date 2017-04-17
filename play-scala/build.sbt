@@ -2,8 +2,6 @@ import com.typesafe.sbt.SbtNativePackager
 import com.typesafe.sbt.SbtNativePackager.autoImport._
 import com.typesafe.sbt.packager.docker.DockerPlugin
 import com.typesafe.sbt.packager.docker.DockerPlugin.autoImport._
-import com.typesafe.sbt.SbtScalariform
-import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 import sbt.Keys._
 import sbt._
 import scoverage.ScoverageKeys._
@@ -21,27 +19,29 @@ PlayKeys.playOmnidoc := false
 
 coverageFailOnMinimum := false
 
-SbtScalariform.scalariformSettings
-
 resolvers ++= Seq(
     Resolver.bintrayRepo("scalaz", "releases"),
     Resolver.typesafeRepo("releases"),
     Resolver.jcenterRepo
   )
 
-val playVersion = "2.5.12"
-val akkaVersion = "2.4.16"
+val playVersion = play.core.PlayVersion.current
+val akkaVersion = "2.4.17"
 val akkaHttpVersion = "10.0.2"
 val playSlick2Version = "2.0.2"
 val slick2Version = "2.1.0"
-val slick3Version = "3.1.1"
+val playSlick3Version = "2.1.0"
+val slick3Version = "3.2.0"
 val logbackVersion = "1.1.7"
 val slf4jVersion = "1.7.21"
-val pgsqlVersion = "9.4-1201-jdbc41"
+val pgsqlJDBC41Version = "9.4-1201-jdbc41"
+val pgsqlJDBC42Version = "42.0.0"
 val scalatestVersion = "2.2.6"
 val scalatestplusVersion = "1.5.1"
+val specs2Version = "3.8.9"
 val casbahVersion = "3.1.1"
-val reactiveMongoVersion = "0.11.14"
+val playReactiveMongoVersion = "0.12.1"
+val reactiveMongoVersion = "0.12.1"
 val silhouetteVersion = "4.0.0"
 val ficusVersion = "1.4.0"
 val scalaGuiceVersion = "4.1.0"
@@ -87,11 +87,18 @@ libraryDependencies ++= Seq(
   "org.scalactic" %% "scalactic" % scalatestVersion,
   "org.scalatestplus.play" %% "scalatestplus-play" % scalatestplusVersion % Test,
   "com.typesafe.play" %% "play-slick" % playSlick2Version,
+  "com.typesafe.play" %% "play-slick" % playSlick3Version,
   "com.typesafe.play" %% "play-slick-evolutions" % playSlick2Version,
   "com.typesafe.slick" %% "slick" % slick2Version,
   "com.typesafe.slick" %% "slick" % slick3Version,
+  "org.postgresql" % "postgresql" % pgsqlJDBC41Version,
+  "org.postgresql" % "postgresql" % pgsqlJDBC42Version,
   "ch.qos.logback" % "logback-classic" % logbackVersion,
-  "org.mongodb" %% "casbah" % casbahVersion,
+  "org.mongodb" %% "casbah-commons" % casbahVersion,
+  "org.mongodb" %% "casbah-core"    % casbahVersion,
+  "org.mongodb" %% "casbah-query"   % casbahVersion,
+  "org.mongodb" %% "casbah-gridfs"  % casbahVersion,
+  "org.reactivemongo" %% "play2-reactivemongo" % playReactiveMongoVersion,
   "org.reactivemongo" %% "reactivemongo" % reactiveMongoVersion,
   "com.iheart" %% "ficus" % ficusVersion,
   "net.codingwell" %% "scala-guice" % scalaGuiceVersion,
