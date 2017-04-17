@@ -1,7 +1,7 @@
 FROM openjdk:8
 
 ENV SCALA_VERSION 2.11.8
-ENV SBT_VERSION 0.13.13
+ENV SBT_VERSION 0.13.15
 
 # Install locales package
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales
