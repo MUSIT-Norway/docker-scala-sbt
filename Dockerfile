@@ -29,10 +29,10 @@ RUN \
   curl -L -o sbt-$SBT_VERSION.deb http://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb && \
   dpkg -i sbt-$SBT_VERSION.deb && \
   rm sbt-$SBT_VERSION.deb && \
-  curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - \
-  add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" && \
+  curl -fsSL https://yum.dockerproject.org/gpg | apt-key add - && \
+  add-apt-repository "deb https://apt.dockerproject.org/repo/ debian-$(lsb_release -cs) main" && \
   apt-get update && \
-  apt-get -y install docker-ce
+  apt-get -y install docker-engine
 
 # Set up a dummy SBT project
 WORKDIR /play-scala
