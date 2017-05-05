@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM library/java:8
 
 ENV SCALA_VERSION 2.11.8
 ENV SBT_VERSION 0.13.15
