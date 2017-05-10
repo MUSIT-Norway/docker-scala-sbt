@@ -30,7 +30,7 @@ RUN \
   dpkg -i sbt-$SBT_VERSION.deb && \
   rm sbt-$SBT_VERSION.deb && \
   mkdir -p ~/.sbt/0.13/plugins && \
-  echo 'addSbtPlugin("io.get-coursier" %% "sbt-coursier" % "1.0.0-RC1")' > ~/.sbt/0.13/plugins/plugins.sbt
+  echo 'addSbtPlugin("io.get-coursier" %% "sbt-coursier" % "1.0.0-RC1")' > ~/.sbt/0.13/plugins/plugins.sbt %% \
   curl -fsSL https://yum.dockerproject.org/gpg | apt-key add - && \
   add-apt-repository "deb https://apt.dockerproject.org/repo/ debian-$(lsb_release -cs) main" && \
   apt-get update && \
