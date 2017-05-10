@@ -40,7 +40,6 @@ val scalaGuiceVersion = "4.1.0"
 val h2Version = "1.4.194"
 val zxingVersion = "3.3.0"
 val enumeratumVersion = "1.5.10"
-val playVersion = play.core.PlayVersion.current
 
 libraryDependencies ++= Seq(
   jdbc,
