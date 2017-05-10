@@ -26,26 +26,21 @@ resolvers ++= Seq(
   )
 
 val playVersion = play.core.PlayVersion.current
-val akkaVersion = "2.4.17"
-val akkaHttpVersion = "10.0.2"
-val playSlick2Version = "2.0.2"
-val slick2Version = "2.1.0"
+val akkaVersion = "2.4.18"
+val akkaHttpVersion = "10.0.6"
 val playSlick3Version = "2.1.0"
 val slick3Version = "3.2.0"
-val logbackVersion = "1.1.7"
-val slf4jVersion = "1.7.21"
-val pgsqlJDBC41Version = "9.4-1201-jdbc41"
-val pgsqlJDBC42Version = "42.0.0"
-val scalatestVersion = "2.2.6"
-val scalatestplusVersion = "1.5.1"
-val specs2Version = "3.8.9"
-val casbahVersion = "3.1.1"
-val playReactiveMongoVersion = "0.12.1"
-val reactiveMongoVersion = "0.12.1"
-val silhouetteVersion = "4.0.0"
+val logbackVersion = "1.2.3"
+val slf4jVersion = "1.7.25"
+val scalatestVersion = "3.0.1"
+val scalatestplusVersion = "2.0.0"
+val scalaMockVersion = "3.5.0"
 val ficusVersion = "1.4.0"
 val scalaGuiceVersion = "4.1.0"
-val h2Version = "1.4.193"
+val h2Version = "1.4.194"
+val zxingVersion = "3.3.0"
+val enumeratumVersion = "1.5.10"
+val playVersion = play.core.PlayVersion.current
 
 libraryDependencies ++= Seq(
   jdbc,
@@ -83,32 +78,28 @@ libraryDependencies ++= Seq(
   "org.iq80.leveldb" % "leveldb" % "0.7",
   "org.fusesource.leveldbjni" % "leveldbjni-all" % "1.8",
   "com.h2database" % "h2" % h2Version,
-  "org.scalatest" %% "scalatest" % scalatestVersion % Test,
+  "org.scalatest" %% "scalatest" % scalatestVersion,
   "org.scalactic" %% "scalactic" % scalatestVersion,
-  "org.scalatestplus.play" %% "scalatestplus-play" % scalatestplusVersion % Test,
-  "com.typesafe.play" %% "play-slick" % playSlick2Version,
+  "org.scalatestplus.play" %% "scalatestplus-play" % scalatestplusVersion,
   "com.typesafe.play" %% "play-slick" % playSlick3Version,
-  "com.typesafe.play" %% "play-slick-evolutions" % playSlick2Version,
-  "com.typesafe.slick" %% "slick" % slick2Version,
+  "com.typesafe.play" %% "play-slick-evolutions" % playSlick3Version,
   "com.typesafe.slick" %% "slick" % slick3Version,
-  "org.postgresql" % "postgresql" % pgsqlJDBC41Version,
-  "org.postgresql" % "postgresql" % pgsqlJDBC42Version,
   "ch.qos.logback" % "logback-classic" % logbackVersion,
-  "org.mongodb" %% "casbah-commons" % casbahVersion,
-  "org.mongodb" %% "casbah-core"    % casbahVersion,
-  "org.mongodb" %% "casbah-query"   % casbahVersion,
-  "org.mongodb" %% "casbah-gridfs"  % casbahVersion,
-  "org.reactivemongo" %% "play2-reactivemongo" % playReactiveMongoVersion,
-  "org.reactivemongo" %% "reactivemongo" % reactiveMongoVersion,
   "com.iheart" %% "ficus" % ficusVersion,
   "net.codingwell" %% "scala-guice" % scalaGuiceVersion,
-  "com.mohiva" %% "play-silhouette" % silhouetteVersion,
-  "com.mohiva" %% "play-silhouette-password-bcrypt" % silhouetteVersion,
-  "com.mohiva" %% "play-silhouette-crypto-jca" % silhouetteVersion,
-  "com.mohiva" %% "play-silhouette-persistence" % silhouetteVersion,
-  "com.mohiva" %% "play-silhouette-cas" % silhouetteVersion,
-  "com.mohiva" %% "play-silhouette-persistence-reactivemongo" % silhouetteVersion,
-  "com.mohiva" %% "play-silhouette-testkit" % silhouetteVersion % Test
+  "org.scalamock" %% "scalamock-scalatest-support" % scalaMockVersion,
+  "com.google.zxing" % "core" % zxingVersion,
+  "com.google.zxing" % "javase" % zxingVersion,
+  "com.typesafe.play" %% "play-slick" % playSlickVersion,
+  "com.typesafe.play" %% "play-slick-evolutions" % playSlickVersion,
+  "com.typesafe.play" %% "play-jdbc" % playVersion,
+  "com.typesafe.play" %% "play-cache" % playVersion,
+  "com.typesafe.play" %% "play-ws" % playVersion,
+  "com.typesafe.play" %% "play-json" % playVersion,
+  "com.typesafe.play" %% "play-logback" % playVersion
 )
-
+libraryDependencies ++= {
+  val libs = Seq("enumeratum", "enumeratum-play", "enumeratum-play-json")
+  libs.map("com.beachape" %% _ % enumeratumVersion)
+}
 libraryDependencies ++= Seq("slf4j-api", "jul-to-slf4j", "jcl-over-slf4j").map("org.slf4j" % _ % slf4jVersion)
