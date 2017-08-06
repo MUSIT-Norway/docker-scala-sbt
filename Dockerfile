@@ -41,7 +41,7 @@ COPY ./sbtopts /etc/sbt/sbtopts
 
 # Prefetch dependencies
 RUN \
-  set COURSIER_CACHE="/root/cache/coursier"
+  set COURSIER_CACHE="/root/cache/coursier" && \
   ls && \
   sbt compile && \
   rm -rf *
