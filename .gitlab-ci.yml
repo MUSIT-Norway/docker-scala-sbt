@@ -2,7 +2,7 @@
 # GitLab CI build script for the docker-scala-sbt Docker image.      #
 # The resulting image is used to build Scala based microservices     #
 ######################################################################
-image: docker:latest
+image: $MUSIT_DOCKER_REGISTRY/library/docker:latest
 
 variables:
   DOCKER_DRIVER: overlay
