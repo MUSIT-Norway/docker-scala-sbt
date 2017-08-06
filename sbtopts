@@ -1,0 +1,15 @@
+# ------------------------------------------------ #
+#  The SBT Configuration file.                     #
+# ------------------------------------------------ #
+
+# Starts sbt even if the current directory contains no sbt project.
+-sbt-create
+
+# Path to global settings/plugins directory (default: ~/.sbt)
+-sbt-dir  /root/cache/sbt
+
+# Path to shared boot directory (default: ~/.sbt/boot)
+-sbt-boot /root/cache/sbt/boot  
+
+# Path to local Ivy repository (default: ~/.ivy2)
+-ivy /root/cache/ivy2
