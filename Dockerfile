@@ -29,8 +29,6 @@ RUN \
   curl -L -o sbt-$SBT_VERSION.deb http://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb && \
   dpkg -i sbt-$SBT_VERSION.deb && \
   rm sbt-$SBT_VERSION.deb && \
-  mkdir -p ~/.sbt/0.13/plugins && \
-  echo 'addSbtPlugin("io.get-coursier" %% "sbt-coursier" % "1.0.0-RC1")' > ~/.sbt/0.13/plugins/plugins.sbt && \
   curl -fsSL https://yum.dockerproject.org/gpg | apt-key add - && \
   add-apt-repository "deb https://apt.dockerproject.org/repo/ debian-$(lsb_release -cs) main" && \
   apt-get update && \
@@ -39,8 +37,11 @@ RUN \
 # Set up a dummy SBT project
 WORKDIR /play-scala
 COPY ./play-scala /play-scala
+COPY ./sbtopts /etc/sbt/sbtopts
+
 # Prefetch dependencies
 RUN \
+  set COURSIER_CACHE="/root/cache/coursier"
   ls && \
   sbt compile && \
   rm -rf *
