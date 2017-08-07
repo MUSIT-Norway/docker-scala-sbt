@@ -36,16 +36,16 @@ RUN \
 
 # Set up a dummy SBT project
 WORKDIR /play-scala
-COPY ./play-scala /play-scala
-COPY ./sbtopts /etc/sbt/sbtopts
+COPY ../play-scala /play-scala
+COPY ../sbtopts /etc/sbt/sbtopts
 
 # Prefetch dependencies
 RUN \
   set COURSIER_CACHE="/root/cache/coursier" && \
-  ls && \
+  cd play-scala && \
   sbt compile && \
-  rm -rf *
-  
+  cd .. && \
+  rm -rf play-scala
 
 # Define working directory
 WORKDIR /root
