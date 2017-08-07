@@ -22,7 +22,7 @@ build for gitlab registry:
     - docker build -t registry.gitlab.com/musit-norway/docker-scala-sbt .
     - docker push registry.gitlab.com/musit-norway/docker-scala-sbt
   only:
-    - master@MUSIT-Norway/musit
+    - master@MUSIT-Norway/docker-scala-sbt
 
 build for harbor registry:
   stage: build
@@ -41,4 +41,4 @@ build for harbor registry:
     - docker build -t $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:latest .
     - docker push $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:latest
   only:
-    - master@MUSIT-Norway/musit
+    - master@MUSIT-Norway/docker-scala-sbt
