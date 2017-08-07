@@ -34,9 +34,10 @@ RUN \
   apt-get update && \
   apt-get -y install docker-engine
 
+WORKDIR /root
+
 # Set up a dummy SBT project
-WORKDIR /play-scala
-COPY ../play-scala /play-scala
+COPY ../play-scala play-scala
 COPY ../sbtopts /etc/sbt/sbtopts
 
 # Prefetch dependencies
@@ -46,6 +47,4 @@ RUN \
   sbt compile && \
   cd .. && \
   rm -rf play-scala
-
-# Define working directory
-WORKDIR /root
+  
