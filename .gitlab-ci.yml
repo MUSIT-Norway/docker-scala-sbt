@@ -2,25 +2,43 @@
 # GitLab CI build script for the docker-scala-sbt Docker image.      #
 # The resulting image is used to build Scala based microservices     #
 ######################################################################
-image: $MUSIT_DOCKER_REGISTRY/library/docker:dind
-
 variables:
   DOCKER_DRIVER: overlay
-
-services:
-  - $MUSIT_DOCKER_REGISTRY/library/docker:dind
-
-before_script:
-  - echo "Running build $CI_BUILD_ID"
-  - mkdir $HOME/.docker
-  - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
-  - docker info
 
 stages:
   - build
 
-build:
+build for gitlab registry:
   stage: build
+  tags:
+    - docker
+    - shared
+  image: docker:latest
+  services:
+    - docker:dind
   script:
+    - cd gitlab-registry
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+    - docker build -t registry.gitlab.com/musit-norway/docker-scala-sbt .
+    - docker push registry.gitlab.com/musit-norway/docker-scala-sbt
+  only:
+    - master@MUSIT-Norway/musit
+
+build for harbor registry:
+  stage: build
+  tags:
+    - docker
+    - musit
+  image: $MUSIT_DOCKER_REGISTRY/library/docker:dind
+  services:
+    - $MUSIT_DOCKER_REGISTRY/library/docker:dind
+  before_script:
+    - echo "Running build $CI_BUILD_ID"
+    - mkdir $HOME/.docker
+    - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
+  script:
+    - cd harbor-registry
     - docker build -t $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:latest .
     - docker push $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:latest
+  only:
+    - master@MUSIT-Norway/musit
