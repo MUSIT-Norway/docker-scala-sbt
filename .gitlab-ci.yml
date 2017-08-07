@@ -17,7 +17,11 @@ build for gitlab registry:
   services:
     - docker:dind
   script:
+    # Prepare the docker build context
     - cd gitlab-registry
+    - mv ../play-scala .
+    - mv ../sbtopts .
+    # Build docker image and push to registry
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
     - docker build -t registry.gitlab.com/musit-norway/docker-scala-sbt .
     - docker push registry.gitlab.com/musit-norway/docker-scala-sbt
@@ -37,7 +41,11 @@ build for harbor registry:
     - mkdir $HOME/.docker
     - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
   script:
+    # Prepare the docker build context
     - cd harbor-registry
+    - mv ../play-scala .
+    - mv ../sbtopts .
+    # Build docker image and push to registry
     - docker build -t $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:latest .
     - docker push $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:latest
   only:

@@ -37,8 +37,8 @@ RUN \
 WORKDIR /root
 
 # Set up a dummy SBT project
-COPY ../play-scala play-scala
-COPY ../sbtopts /etc/sbt/sbtopts
+COPY ./play-scala play-scala
+COPY ./sbtopts /etc/sbt/sbtopts
 
 # Prefetch dependencies
 RUN \
