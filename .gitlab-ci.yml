@@ -40,7 +40,7 @@ build for harbor registry:
     - echo "Running build $CI_BUILD_ID"
     - mkdir $HOME/.docker
     - echo $DOCKER_AUTH_CONFIG > $HOME/.docker/config.json
-    - ls $HOME/.docker/config.json
+    - echo $DOCKER_AUTH_CONFIG
   script:
     # Prepare the docker build context
     - cd harbor-registry
