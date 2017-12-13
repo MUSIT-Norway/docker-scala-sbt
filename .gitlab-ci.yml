@@ -46,9 +46,9 @@ build for harbor registry:
     - mv ../play-scala .
     - mv ../sbtopts .
     # Build docker image and push to registry
-    - docker build -t $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:$CI_COMMIT_TAG .
-    - docker push $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:$CI_COMMIT_TAG
-    - docker tag $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:$CI_COMMIT_TAG $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:latest
+    - docker build -t $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:$CI_COMMIT_SHA .
+    - docker push $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:$CI_COMMIT_SHA
+    - docker tag $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:$CI_COMMIT_SHA $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:latest
     - docker push $MUSIT_DOCKER_REGISTRY/musit/docker-scala-sbt:latest
   only:
     - master@MUSIT-Norway/docker-scala-sbt
